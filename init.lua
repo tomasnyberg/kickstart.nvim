@@ -166,6 +166,8 @@ vim.opt.scrolloff = 10
 --  See `:help vim.keymap.set()`
 --  TOMAS: My own keymaps
 vim.keymap.set('n', 'ää', 'ggVGy', { noremap = true, silent = true })
+vim.opt.shell = '/bin/bash -l'
+vim.fn.system 'source ~/.bashrc'
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
