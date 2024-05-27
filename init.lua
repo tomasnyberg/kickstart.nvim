@@ -708,6 +708,7 @@ require('lazy').setup({
         },
       },
       'saadparwaiz1/cmp_luasnip',
+      'mlaursen/vim-react-snippets', -- Tomas: react snippets
 
       -- Adds other completion capabilities.
       --  nvim-cmp does not ship with all sources by default. They are split
@@ -717,6 +718,7 @@ require('lazy').setup({
     },
     config = function()
       -- See `:help cmp`
+      require('vim-react-snippets').lazy_load() -- Tomas: react snippets
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
