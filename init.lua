@@ -243,6 +243,12 @@ require('lazy').setup({
   -- TOMAS new packages
   'olimorris/onedarkpro.nvim', -- color scheme
   'github/copilot.vim',
+  {
+    'luckasRanarison/tailwind-tools.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {}, -- your configuration
+  },
+  -- END TOMAS new packages
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
