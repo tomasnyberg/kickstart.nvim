@@ -170,6 +170,8 @@ vim.keymap.set('n', '<C-ä>', '<Plug>(copilot-suggest)', { noremap = true, silen
 vim.opt.shell = '/bin/bash -l'
 vim.fn.system 'source ~/.bashrc'
 vim.opt.wrap = false
+-- TOMAS: format json
+vim.keymap.set('n', '<leader>ff', ':%!jq .<CR>', { desc = 'format json' })
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
