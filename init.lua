@@ -257,6 +257,7 @@ require('lazy').setup({
     event = 'InsertEnter',
     config = true,
   },
+  'tpope/vim-fugitive',
   -- END TOMAS new packages
 
   -- NOTE: Plugins can also be added by using a table,
