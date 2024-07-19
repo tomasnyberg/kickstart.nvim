@@ -337,12 +337,15 @@ require('lazy').setup({
           name = 'Launch',
           type = 'lldb',
           request = 'launch',
-          program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-          end,
+          -- program = function()
+          --   return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          -- end,
+          program = vim.fn.getcwd() .. '/labs/lab4/preflow',
           cwd = '${workspaceFolder}',
           stopOnEntry = true,
-          args = {},
+          args = {
+            'labs/lab4/in',
+          },
         },
       }
 
