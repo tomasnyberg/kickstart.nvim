@@ -176,6 +176,17 @@ vim.keymap.set('n', '<leader>ff', ':%!jq .<CR>', { desc = 'format json' })
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Default tab settings
+vim.o.tabstop = 2
+-- Set the number of saces that a <Tab> counts for while performing editing operations
+vim.o.softtabstop = 2
+-- Set the number of spaces to use for each step of (auto)indent
+vim.o.shiftwidth = 2
+-- Use spaces instead of tabs
+vim.o.expandtab = true
+
+-- END TOMAS
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
