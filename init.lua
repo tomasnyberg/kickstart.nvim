@@ -360,6 +360,20 @@ require('lazy').setup({
         },
       }
 
+      dap.configurations.python = {
+        {
+          type = 'python',
+          request = 'launch',
+          name = 'Launch file',
+          program = '${file}',
+          pythonPath = function()
+            return '/usr/bin/python3'
+          end,
+          -- pass --debug as the first argument
+          args = { '--debug' },
+        },
+      }
+
       -- local elixir_ls_debugger = vim.fn.exepath 'elixir-ls-debugger'
       -- if elixir_ls_debugger ~= '' then
       --   dap.adapters.mix_task = {
@@ -381,6 +395,10 @@ require('lazy').setup({
       -- end
 
       vim.keymap.set('n', '<space>b', dap.toggle_breakpoint)
+      -- conditional breakpoint
+      vim.keymap.set('n', '<space>B', function()
+        dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+      end)
       vim.keymap.set('n', '<space>gb', dap.run_to_cursor)
 
       -- Eval var under cursor
@@ -393,7 +411,13 @@ require('lazy').setup({
       vim.keymap.set('n', '<F3>', dap.step_over)
       vim.keymap.set('n', '<F4>', dap.step_out)
       vim.keymap.set('n', '<F5>', dap.step_back)
-      vim.keymap.set('n', '<F13>', dap.restart)
+      vim.keymap.set('n', '<F6>', dap.restart)
+      -- vim.keymap.set('n', '<F7>', dap.close)
+      local function close_both()
+        dap.close()
+        ui.close()
+      end
+      vim.keymap.set('n', '<F8>', close_both)
 
       dap.listeners.before.attach.dapui_config = function()
         ui.open()
@@ -409,6 +433,17 @@ require('lazy').setup({
       end
     end,
   },
+  {
+    'mfussenegger/nvim-dap-python',
+    ft = 'python',
+    dependencies = {
+      'mfussenegger/nvim-dap',
+    },
+    config = function()
+      require('dap-python').setup '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
+    end,
+  },
+
   -- END TOMAS new packages
 
   -- NOTE: Plugins can also be added by using a table,
@@ -797,7 +832,8 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
+        'stylua', -- Used to format Lua codes
+        'debugpy', -- TOMAS: added this
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
