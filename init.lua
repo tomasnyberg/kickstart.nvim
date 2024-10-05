@@ -267,6 +267,35 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- TOMAS new packages
+  {
+    'mfussenegger/nvim-jdtls',
+    ft = { 'java' }, -- Load jdtls only for Java files
+    config = function()
+      local jdtls = require 'jdtls'
+
+      -- TOMAS note: you will need to install jdtls. Do it like this:
+      -- wget https://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz
+      -- tar -xvzf jdt-language-server-latest.tar.gz -C ~/.local/share/
+      -- If that doesn't look, check here https://github.com/eclipse-jdtls/eclipse.jdt.ls#installation
+      local config = {
+        cmd = { '/home/tomas/.local/share/bin/jdtls' }, -- Update with the correct path to jdtls
+        root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+      }
+
+      -- Set up the LSP configuration for Java files
+      local java_group = vim.api.nvim_create_augroup('nvim-jdtls', { clear = true })
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'java',
+        callback = function()
+          jdtls.start_or_attach(config)
+          vim.bo.expandtab = true
+          vim.bo.shiftwidth = 2
+          vim.bo.tabstop = 2
+        end,
+        group = java_group,
+      })
+    end,
+  },
   'olimorris/onedarkpro.nvim', -- color scheme
   'github/copilot.vim',
   {
@@ -382,6 +411,24 @@ require('lazy').setup({
           end,
           -- pass --debug as the first argument
           args = { '--debug' },
+        },
+      }
+
+      dap.configurations.java = {
+        {
+          type = 'java',
+          name = 'Debug (Launch) - Current File',
+          request = 'launch',
+          mainClass = '${file}',
+          project = '${workspaceFolder}',
+          args = {},
+          jvmArgs = {},
+          classPaths = {},
+          modulePaths = {},
+          env = {},
+          externalConsole = false,
+          internalConsoleOptions = 'neverOpen',
+          -- cwd = '${workspaceFolder}',
         },
       }
 
