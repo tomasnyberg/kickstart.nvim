@@ -186,6 +186,16 @@ vim.o.shiftwidth = 2
 -- Use spaces instead of tabs
 vim.o.expandtab = true
 
+-- custom tab settings
+local function set_shiftwidth(filetype, shiftwidth)
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = filetype,
+    callback = function()
+      vim.o.shiftwidth = shiftwidth
+    end,
+  })
+end
+set_shiftwidth('python', 4)
 -- END TOMAS
 
 -- Diagnostic keymaps
