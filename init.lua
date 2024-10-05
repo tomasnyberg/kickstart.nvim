@@ -269,6 +269,9 @@ require('lazy').setup({
   -- TOMAS new packages
   {
     'mfussenegger/nvim-jdtls',
+    dependencies = {
+      'nvim-dap',
+    },
     ft = { 'java' }, -- Load jdtls only for Java files
     config = function()
       local jdtls = require 'jdtls'
@@ -280,6 +283,13 @@ require('lazy').setup({
       local config = {
         cmd = { '/home/tomas/.local/share/bin/jdtls' }, -- Update with the correct path to jdtls
         root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+        init_options = {
+          bundles = {
+            -- Tomas note: you will need to install this as well. Should be just cloning the java-debug repo and running
+            -- ./mvnw clean install
+            vim.fn.glob('~/.local/share/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar', true),
+          },
+        },
       }
 
       -- Set up the LSP configuration for Java files
