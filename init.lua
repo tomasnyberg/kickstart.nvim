@@ -172,6 +172,7 @@ vim.fn.system 'source ~/.bashrc'
 vim.opt.wrap = false
 -- TOMAS: format json
 vim.keymap.set('n', '<leader>ff', ':%!jq .<CR>', { desc = 'format json' })
+vim.keymap.set('n', '<leader>df', ':Telescope find_files no_ignore=true<CR>', { desc = 'telescope fd but no ignore' })
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
