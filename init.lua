@@ -167,6 +167,10 @@ vim.opt.scrolloff = 10
 --  TOMAS: My own keymaps
 vim.keymap.set('n', 'ää', 'ggVGy', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-ä>', '<Plug>(copilot-suggest)', { noremap = true, silent = true })
+-- open git difftool (tomas)
+vim.keymap.set('n', '<leader>gd', ':DiffviewOpen<CR>', { desc = 'open git difftool' })
+vim.keymap.set('n', '<leader>gc', ':DiffviewClose<CR>', { desc = 'close git difftool' })
+
 vim.opt.shell = '/bin/bash -l'
 vim.fn.system 'source ~/.bashrc'
 vim.opt.wrap = false
@@ -267,6 +271,7 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- TOMAS new packages
+  'sindrets/diffview.nvim',
   {
     'mfussenegger/nvim-jdtls',
     dependencies = {
