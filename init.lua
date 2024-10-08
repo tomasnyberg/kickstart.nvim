@@ -298,9 +298,6 @@ require('lazy').setup({
         pattern = 'java',
         callback = function()
           jdtls.start_or_attach(config)
-          vim.bo.expandtab = true
-          vim.bo.shiftwidth = 2
-          vim.bo.tabstop = 2
         end,
         group = java_group,
       })
