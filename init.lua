@@ -170,6 +170,9 @@ vim.keymap.set('n', '<C-ä>', '<Plug>(copilot-suggest)', { noremap = true, silen
 -- open git difftool (tomas)
 vim.keymap.set('n', '<leader>gd', ':DiffviewOpen<CR>', { desc = 'open git difftool' })
 vim.keymap.set('n', '<leader>gc', ':DiffviewClose<CR>', { desc = 'close git difftool' })
+vim.keymap.set('n', '<leader>gm', ':DiffviewOpen origin/main...HEAD<CR>', { desc = 'diff against remote main' })
+vim.keymap.set('n', '<leader>gh', ':DiffviewFileHistory<CR>', { desc = 'open git diffview file history' })
+vim.keymap.set('n', '<leader>gfh', ':DiffviewFileHistory %<CR>', { desc = 'open git diffview file history' })
 
 vim.opt.shell = '/bin/bash -l'
 vim.fn.system 'source ~/.bashrc'
