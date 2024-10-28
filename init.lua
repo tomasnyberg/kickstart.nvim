@@ -173,6 +173,8 @@ vim.keymap.set('n', '<leader>gc', ':DiffviewClose<CR>', { desc = 'close git diff
 vim.keymap.set('n', '<leader>gm', ':DiffviewOpen origin/main...HEAD<CR>', { desc = 'diff against remote main' })
 vim.keymap.set('n', '<leader>gh', ':DiffviewFileHistory<CR>', { desc = 'open git diffview file history' })
 vim.keymap.set('n', '<leader>gfh', ':DiffviewFileHistory %<CR>', { desc = 'open git diffview file history' })
+-- Open neotree (tomas)
+vim.keymap.set('n', '<leader>nt', ':Neotree <CR>', { desc = 'open the neotree file browser' })
 
 vim.opt.shell = '/bin/bash -l'
 vim.fn.system 'source ~/.bashrc'
@@ -274,6 +276,16 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- TOMAS new packages
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+      '3rd/image.nvim', -- Optional image support in preview window: See `# Preview Mode` for more information
+    },
+  },
   'sindrets/diffview.nvim',
   {
     'mfussenegger/nvim-jdtls',
