@@ -335,7 +335,12 @@ require('lazy').setup({
     event = 'InsertEnter',
     config = true,
   },
-  'tpope/vim-fugitive',
+  {
+    'tpope/vim-fugitive',
+    config = function()
+      vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
+    end,
+  },
   {
     'scalameta/nvim-metals',
     dependencies = {
