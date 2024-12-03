@@ -464,6 +464,18 @@ require('lazy').setup({
         },
       }
 
+      dap.configurations.rust = {
+        {
+          type = 'lldb',
+          name = 'Debug',
+          request = 'launch',
+          program = '/home/tomas/stuff/AoC2024/target/debug/AoC2024',
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
+          args = { 'day3' },
+        },
+      }
+
       -- local elixir_ls_debugger = vim.fn.exepath 'elixir-ls-debugger'
       -- if elixir_ls_debugger ~= '' then
       --   dap.adapters.mix_task = {
@@ -532,6 +544,12 @@ require('lazy').setup({
     config = function()
       require('dap-python').setup '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
     end,
+  },
+
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^5', -- Recommended
+    lazy = false, -- This plugin is already lazy
   },
 
   -- END TOMAS new packages
@@ -903,12 +921,6 @@ require('lazy').setup({
         -- TOMAS: Python lsp? Also, clang for C / C++ I think Also, clang for C / C++ I think
         pyright = {},
         clangd = {},
-        rust_analyzer = {
-          cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
-          checkOnSave = {
-            command = 'clippy',
-          },
-        },
 
         clojure_lsp = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
