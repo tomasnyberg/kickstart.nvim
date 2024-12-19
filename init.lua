@@ -406,16 +406,16 @@ require('lazy').setup({
       local ui = require 'dapui'
 
       require('dapui').setup()
-      dap.adapters.lldb = {
-        type = 'executable',
-        -- TOMAS NOTE: (!!!)
-        -- To make this work you will need the lldb-dap-18 thing. you can install it like this.
-        -- sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" # Instructions from https://apt.llvm.org/
-        -- cd $(dirname $(which lldb-17))
-        -- sudo ln -s lldb-vscode-17 lldb-vscode
-        command = '/usr/bin/lldb-dap-18', -- adjust as needed, must be absolute path
-        name = 'lldb',
-      }
+      -- dap.adapters.lldb = {
+      --   type = 'executable',
+      --   -- TOMAS NOTE: (!!!)
+      --   -- To make this work you will need the lldb-dap-18 thing. you can install it like this.
+      --   -- sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" # Instructions from https://apt.llvm.org/
+      --   -- cd $(dirname $(which lldb-17))
+      --   -- sudo ln -s lldb-vscode-17 lldb-vscode
+      --   command = '/usr/bin/lldb-dap-18', -- adjust as needed, must be absolute path
+      --   name = 'lldb',
+      -- }
       dap.configurations.c = {
         {
           name = 'Launch',
@@ -424,11 +424,11 @@ require('lazy').setup({
           -- program = function()
           --   return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
           -- end,
-          program = vim.fn.getcwd() .. '/labs/lab4/preflow',
+          program = vim.fn.getcwd() .. '/clox/clox_exec',
           cwd = '${workspaceFolder}',
           stopOnEntry = true,
           args = {
-            'labs/lab4/in',
+            '/home/tomas/stuff/crafting_interpreters/clox/example.lox',
           },
         },
       }
@@ -465,17 +465,17 @@ require('lazy').setup({
         },
       }
 
-      dap.configurations.rust = {
-        {
-          type = 'lldb',
-          name = 'Debug',
-          request = 'launch',
-          program = '/home/tomas/stuff/AoC2024/target/debug/AoC2024',
-          cwd = '${workspaceFolder}',
-          stopOnEntry = false,
-          args = { 'day3' },
-        },
-      }
+      -- dap.configurations.rust = {
+      --   {
+      --     type = 'lldb',
+      --     name = 'Debug',
+      --     request = 'launch',
+      --     program = '/home/tomas/stuff/AoC2024/target/debug/AoC2024',
+      --     cwd = '${workspaceFolder}',
+      --     stopOnEntry = false,
+      --     args = { 'day3' },
+      --   },
+      -- }
 
       -- local elixir_ls_debugger = vim.fn.exepath 'elixir-ls-debugger'
       -- if elixir_ls_debugger ~= '' then
