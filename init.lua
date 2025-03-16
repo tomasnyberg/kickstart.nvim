@@ -165,6 +165,7 @@ vim.opt.scrolloff = 10
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 --  TOMAS: My own keymaps
+vim.opt.clipboard = 'unnamed' -- TOMAS: used on WSL since otherwise I get weird CRLF stuff
 vim.keymap.set('n', 'ää', 'ggVGy', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-ä>', '<Plug>(copilot-suggest)', { noremap = true, silent = true })
 -- open git difftool (tomas)
