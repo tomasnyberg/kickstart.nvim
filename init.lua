@@ -719,6 +719,10 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      {
+        'nvim-telescope/telescope-live-grep-args.nvim',
+        version = '^1.0.0',
+      },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -793,6 +797,14 @@ require('lazy').setup({
           prompt_title = 'Live Grep Over Project Files',
         }
       end, { desc = '[S]earch [/] in Open Files' })
+
+      vim.keymap.set('n', '<leader>sA', function()
+        require('telescope').extensions.live_grep_args.live_grep_args {
+          prompt_title = 'Live Grep with Args',
+          -- You can add additional default arguments here if you like:
+          -- additional_args = function(opts) return { "--glob=!**/node_modules/**" } end,
+        }
+      end, { desc = '[S]earch live grep with [A]rgs' })
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>sn', function()
