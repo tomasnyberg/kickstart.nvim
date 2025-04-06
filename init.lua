@@ -210,6 +210,11 @@ local function set_shiftwidth(filetype, shiftwidth)
   })
 end
 set_shiftwidth('python', 4)
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
 -- END TOMAS
 
 -- Diagnostic keymaps
@@ -282,6 +287,16 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- TOMAS new packages
+  {
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    config = function()
+      require("lint").linters_by_ft = {
+        javascript = { "eslint" },
+        typescript = { "eslint" },
+      }
+    end,
+  },
   {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
@@ -1038,6 +1053,7 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'eslint-lsp',
         'stylua', -- Used to format Lua codes
         'debugpy', -- TOMAS: added this
       })
