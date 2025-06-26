@@ -346,11 +346,11 @@ require('lazy').setup({
   },
   'olimorris/onedarkpro.nvim', -- color scheme
   'github/copilot.vim',
-  {
-    'luckasRanarison/tailwind-tools.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    opts = {}, -- your configuration
-  },
+  -- {
+  --   'luckasRanarison/tailwind-tools.nvim',
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  --   opts = {}, -- your configuration
+  -- },
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
